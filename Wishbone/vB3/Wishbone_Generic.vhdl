@@ -6,7 +6,7 @@
 --   Generic Wishbone interface for pre-constraining widths
 --
 -- Description:
---   Uses spec-matching names (Addr, Sel, Dat, Cyc, Stb, etc.)
+--   Uses full UpperCamelCase names matching the Wishbone interface records
 --
 -- License:
 -- =============================================================================
@@ -40,40 +40,40 @@ package Wishbone_Generic is
 
 	-- Full Wishbone interface with all optional signals
 	subtype Wishbone_SizedInterface is Wishbone_Interface(
-		Addr(ADDRESS_BITS - 1 downto 0),
-		DatM(DATA_BITS - 1 downto 0),
-		DatS(DATA_BITS - 1 downto 0),
-		Sel(SEL_BITS - 1 downto 0),
-		TgdM(TGD_BITS - 1 downto 0),
-		TgdS(TGD_BITS - 1 downto 0),
-		Tga(TGA_BITS - 1 downto 0),
-		Tgc(TGC_BITS - 1 downto 0)
+		Address(ADDRESS_BITS - 1 downto 0),
+		DataOut(DATA_BITS - 1 downto 0),
+		DataIn(DATA_BITS - 1 downto 0),
+		Select(SEL_BITS - 1 downto 0),
+		Tag.DataOut(TGD_BITS - 1 downto 0),
+		Tag.DataIn(TGD_BITS - 1 downto 0),
+		Tag.Address(TGA_BITS - 1 downto 0),
+		Tag.Cycle(TGC_BITS - 1 downto 0)
 	);
 
 	subtype Wishbone_SizedInterface_Vector is Wishbone_Interface_Vector(open)(
-		Addr(ADDRESS_BITS - 1 downto 0),
-		DatM(DATA_BITS - 1 downto 0),
-		DatS(DATA_BITS - 1 downto 0),
-		Sel(SEL_BITS - 1 downto 0),
-		TgdM(TGD_BITS - 1 downto 0),
-		TgdS(TGD_BITS - 1 downto 0),
-		Tga(TGA_BITS - 1 downto 0),
-		Tgc(TGC_BITS - 1 downto 0)
+		Address(ADDRESS_BITS - 1 downto 0),
+		DataOut(DATA_BITS - 1 downto 0),
+		DataIn(DATA_BITS - 1 downto 0),
+		Select(SEL_BITS - 1 downto 0),
+		Tag.DataOut(TGD_BITS - 1 downto 0),
+		Tag.DataIn(TGD_BITS - 1 downto 0),
+		Tag.Address(TGA_BITS - 1 downto 0),
+		Tag.Cycle(TGC_BITS - 1 downto 0)
 	);
 
 	-- Simplified Wishbone interface
 	subtype Wishbone_Simple_SizedInterface is Wishbone_Simple_Interface(
-		Addr(ADDRESS_BITS - 1 downto 0),
-		DatM(DATA_BITS - 1 downto 0),
-		DatS(DATA_BITS - 1 downto 0),
-		Sel(SEL_BITS - 1 downto 0)
+		Address(ADDRESS_BITS - 1 downto 0),
+		DataOut(DATA_BITS - 1 downto 0),
+		DataIn(DATA_BITS - 1 downto 0),
+		Select(SEL_BITS - 1 downto 0)
 	);
 
 	subtype Wishbone_Simple_SizedInterface_Vector is Wishbone_Simple_Interface_Vector(open)(
-		Addr(ADDRESS_BITS - 1 downto 0),
-		DatM(DATA_BITS - 1 downto 0),
-		DatS(DATA_BITS - 1 downto 0),
-		Sel(SEL_BITS - 1 downto 0)
+		Address(ADDRESS_BITS - 1 downto 0),
+		DataOut(DATA_BITS - 1 downto 0),
+		DataIn(DATA_BITS - 1 downto 0),
+		Select(SEL_BITS - 1 downto 0)
 	);
 
 end package;

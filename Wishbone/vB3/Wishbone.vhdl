@@ -6,7 +6,7 @@
 --   VHDL-2019 Wishbone interface descriptions
 --
 -- Description:
---   Signal names match Wishbone B.4 specification (Cyc, Stb, Ack, Err, etc.)
+--   Signal names use full descriptive UpperCamelCase names for clarity
 --
 -- License:
 -- =============================================================================
@@ -32,7 +32,7 @@ use     IEEE.numeric_std.all;
 use     work.WishboneCommon.all;
 
 package Wishbone is
-	-- Classic Wishbone Interface (matching spec signal names)
+	-- Tag Interface for optional tag signals
 	type Wishbone_Tag_Interface is record
 		Cycle   : Tag_Cycle_Type;
 		Address : Tag_Address_Type;
@@ -40,6 +40,7 @@ package Wishbone is
 		DataIn  : Tag_Data_Type;
 	end record;
 
+	-- Full Wishbone Interface (using descriptive full names)
 	type Wishbone_Interface is record
 		-- Master signals (outputs from master perspective)
 		Cycle       : std_ulogic;     -- CYC_O - Cycle
@@ -50,14 +51,14 @@ package Wishbone is
 		Select      : Select_Type;    -- SEL_O - Select
 		
 		-- Slave signals (outputs from slave perspective)
-		Acknoledge  : std_ulogic;     -- ACK_I - Acknowledge
+		Acknowledge : std_ulogic;     -- ACK_I - Acknowledge
 		Error       : std_ulogic;     -- ERR_I - Error
 		Retry       : std_ulogic;     -- RTY_I - Retry
 		DataIn      : Data_Type;      -- DAT_I - Data (Slave to Master)
 		
 		-- Optional signals for pipelined/burst modes
-		CycleType   : CycleType_Type;       -- CTI_O - Cycle Type Identifier
-		BurstType   : BurstType_Type;       -- BTE_O - Burst Type Extension
+		CycleType   : CycleType_Type; -- CTI_O - Cycle Type Identifier
+		BurstType   : BurstType_Type; -- BTE_O - Burst Type Extension
 		
 		-- Optional signals
 		Tag         : Wishbone_Tag_Interface;
@@ -69,57 +70,54 @@ package Wishbone is
 	-- Master view (from master's perspective)
 	view Wishbone_MasterView of Wishbone_Interface is
 		-- Master outputs
-		Cyc       : out;
-		Stb       : out;
-		We        : out;
-		Addr      : out;
-		DatM      : out;
-		Sel       : out;
-		Cti       : out;
-		Bte       : out;
-		TgdM      : out;
-		Tga       : out;
-		Tgc       : out;
-		Lock      : out;
+		Cycle       : out;
+		Strobe      : out;
+		WriteEnable : out;
+		Address     : out;
+		DataOut     : out;
+		Select      : out;
+		CycleType   : out;
+		BurstType   : out;
+		Tag         : out;
+		Lock        : out;
 		
 		-- Master inputs (slave outputs)
-		Ack       : in;
-		Err       : in;
-		Rty       : in;
-		DatS      : in;
-		TgdS      : in;
-		Stall     : in;
+		Acknowledge : in;
+		Error       : in;
+		Retry       : in;
+		DataIn      : in;
+		Stall       : in;
 	end view;
 	alias Wishbone_SlaveView is Wishbone_MasterView'converse;
 
 	-- Simplified interface without optional signals
 	type Wishbone_Simple_Interface is record
 		-- Master signals
-		Cyc       : std_ulogic;
-		Stb       : std_ulogic;
-		We        : std_ulogic;
-		Addr      : Addr_Type;
-		DatM      : Data_Type;
-		Sel       : Sel_Type;
+		Cycle       : std_ulogic;
+		Strobe      : std_ulogic;
+		WriteEnable : std_ulogic;
+		Address     : Address_Type;
+		DataOut     : Data_Type;
+		Select      : Select_Type;
 		
 		-- Slave signals
-		Ack       : std_ulogic;
-		DatS      : Data_Type;
+		Acknowledge : std_ulogic;
+		DataIn      : Data_Type;
 	end record;
 	type Wishbone_Simple_Interface_Vector is array(natural range <>) of Wishbone_Simple_Interface;
 
 	view Wishbone_Simple_MasterView of Wishbone_Simple_Interface is
 		-- Master outputs
-		Cyc       : out;
-		Stb       : out;
-		We        : out;
-		Addr      : out;
-		DatM      : out;
-		Sel       : out;
+		Cycle       : out;
+		Strobe      : out;
+		WriteEnable : out;
+		Address     : out;
+		DataOut     : out;
+		Select      : out;
 		
 		-- Master inputs
-		Ack       : in;
-		DatS      : in;
+		Acknowledge : in;
+		DataIn      : in;
 	end view;
 	alias Wishbone_Simple_SlaveView is Wishbone_Simple_MasterView'converse;
 
