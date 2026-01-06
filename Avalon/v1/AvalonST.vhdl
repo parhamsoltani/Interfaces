@@ -70,25 +70,4 @@ package AvalonST is
 	end view;
 	alias AvalonST_SinkView is AvalonST_SourceView'converse;
 
-	-- Simplified interface without optional signals
-	type AvalonST_Simple_Interface is record
-		-- Handshake signals
-		Valid : std_ulogic;
-		Ready : std_ulogic;
-		
-		-- Payload signal
-		Data  : Data_Type;
-	end record;
-	type AvalonST_Simple_Interface_Vector is array(natural range <>) of AvalonST_Simple_Interface;
-
-	view AvalonST_Simple_SourceView of AvalonST_Simple_Interface is
-		-- Source outputs
-		Valid : out;
-		Data  : out;
-		
-		-- Source inputs
-		Ready : in;
-	end view;
-	alias AvalonST_Simple_SinkView is AvalonST_Simple_SourceView'converse;
-
 end package;

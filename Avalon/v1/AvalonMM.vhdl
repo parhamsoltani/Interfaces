@@ -82,33 +82,4 @@ package AvalonMM is
 	end view;
 	alias AvalonMM_SlaveView is AvalonMM_MasterView'converse;
 
-	-- Simplified interface without optional signals
-	type AvalonMM_Simple_Interface is record
-		-- Master signals
-		Address     : Address_Type;
-		Read        : std_ulogic;
-		Write       : std_ulogic;
-		WriteData   : Data_Type;
-		ByteEnable  : ByteEnable_Type;
-		
-		-- Slave signals
-		ReadData    : Data_Type;
-		WaitRequest : std_ulogic;
-	end record;
-	type AvalonMM_Simple_Interface_Vector is array(natural range <>) of AvalonMM_Simple_Interface;
-
-	view AvalonMM_Simple_MasterView of AvalonMM_Simple_Interface is
-		-- Master outputs
-		Address     : out;
-		Read        : out;
-		Write       : out;
-		WriteData   : out;
-		ByteEnable  : out;
-		
-		-- Master inputs
-		ReadData    : in;
-		WaitRequest : in;
-	end view;
-	alias AvalonMM_Simple_SlaveView is AvalonMM_Simple_MasterView'converse;
-
 end package;

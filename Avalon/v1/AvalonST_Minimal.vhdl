@@ -3,10 +3,10 @@
 --   Parham Soltani
 --
 -- Package:
---   Generic Avalon-ST interface descriptions for pre-constraining
+--   Minimal Avalon Streaming interface
 --
 -- Description:
---   Uses spec-matching names (data, valid, ready, channel, etc.)
+--   Simplified Avalon ST interface without optional signals for basic streaming
 --
 -- License:
 -- =============================================================================
@@ -25,29 +25,33 @@
 -- limitations under the License.
 -- =============================================================================
 
-use work.AvalonST.all;
+library IEEE;
+use     IEEE.std_logic_1164.all;
+use     IEEE.numeric_std.all;
 
-package AvalonST_Generic is
-	generic (
-		constant DATA_BITS    : positive;
-		constant EMPTY_BITS   : positive := 1;
-		constant ERROR_BITS   : positive := 1;
-		constant CHANNEL_BITS : positive := 1
-	);
+use     work.AvalonCommon.all;
 
-	-- Full Avalon-ST interface with all optional signals
-	subtype AvalonST_SizedInterface is AvalonST_Interface(
-		Data(DATA_BITS - 1 downto 0),
-		Empty(EMPTY_BITS - 1 downto 0),
-		Error(ERROR_BITS - 1 downto 0),
-		Channel(CHANNEL_BITS - 1 downto 0)
-	);
+package AvalonST_Minimal is
+	-- Minimal Avalon ST interface (only essential signals)
+	type AvalonST_Minimal_Interface is record
+		-- Source signals
+		Data  : Data_Type;
+		Valid : std_ulogic;
+		
+		-- Sink signals
+		Ready : std_ulogic;
+	end record;
+	type AvalonST_Minimal_Interface_Vector is array(natural range <>) of AvalonST_Minimal_Interface;
 
-	subtype AvalonST_SizedInterface_Vector is AvalonST_Interface_Vector(open)(
-		Data(DATA_BITS - 1 downto 0),
-		Empty(EMPTY_BITS - 1 downto 0),
-		Error(ERROR_BITS - 1 downto 0),
-		Channel(CHANNEL_BITS - 1 downto 0)
-	);
+	-- Source view
+	view AvalonST_Minimal_SourceView of AvalonST_Minimal_Interface is
+		-- Source outputs
+		Data  : out;
+		Valid : out;
+		
+		-- Source inputs (sink outputs)
+		Ready : in;
+	end view;
+	alias AvalonST_Minimal_SinkView is AvalonST_Minimal_SourceView'converse;
 
 end package;

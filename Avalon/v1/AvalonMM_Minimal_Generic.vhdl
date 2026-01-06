@@ -3,10 +3,10 @@
 --   Parham Soltani
 --
 -- Package:
---   Generic Avalon-ST interface descriptions for pre-constraining
+--   Generic minimal Avalon Memory-Mapped interface for pre-constraining widths
 --
 -- Description:
---   Uses spec-matching names (data, valid, ready, channel, etc.)
+--   Provides sized versions of the minimal Avalon MM interface
 --
 -- License:
 -- =============================================================================
@@ -25,29 +25,29 @@
 -- limitations under the License.
 -- =============================================================================
 
-use work.AvalonST.all;
+use work.AvalonMM_Minimal.all;
 
-package AvalonST_Generic is
+package AvalonMM_Minimal_Generic is
 	generic (
-		constant DATA_BITS    : positive;
-		constant EMPTY_BITS   : positive := 1;
-		constant ERROR_BITS   : positive := 1;
-		constant CHANNEL_BITS : positive := 1
+		constant ADDRESS_BITS : positive;
+		constant DATA_BITS    : positive
 	);
 
-	-- Full Avalon-ST interface with all optional signals
-	subtype AvalonST_SizedInterface is AvalonST_Interface(
-		Data(DATA_BITS - 1 downto 0),
-		Empty(EMPTY_BITS - 1 downto 0),
-		Error(ERROR_BITS - 1 downto 0),
-		Channel(CHANNEL_BITS - 1 downto 0)
+	constant BYTEENABLE_BITS : positive := DATA_BITS / 8;
+
+	-- Sized minimal interface
+	subtype AvalonMM_Minimal_SizedInterface is AvalonMM_Minimal_Interface(
+		Address(ADDRESS_BITS - 1 downto 0),
+		WriteData(DATA_BITS - 1 downto 0),
+		ReadData(DATA_BITS - 1 downto 0),
+		ByteEnable(BYTEENABLE_BITS - 1 downto 0)
 	);
 
-	subtype AvalonST_SizedInterface_Vector is AvalonST_Interface_Vector(open)(
-		Data(DATA_BITS - 1 downto 0),
-		Empty(EMPTY_BITS - 1 downto 0),
-		Error(ERROR_BITS - 1 downto 0),
-		Channel(CHANNEL_BITS - 1 downto 0)
+	subtype AvalonMM_Minimal_SizedInterface_Vector is AvalonMM_Minimal_Interface_Vector(open)(
+		Address(ADDRESS_BITS - 1 downto 0),
+		WriteData(DATA_BITS - 1 downto 0),
+		ReadData(DATA_BITS - 1 downto 0),
+		ByteEnable(BYTEENABLE_BITS - 1 downto 0)
 	);
 
 end package;

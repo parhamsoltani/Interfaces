@@ -3,10 +3,10 @@
 --   Parham Soltani
 --
 -- Package:
---   Generic Avalon-ST interface descriptions for pre-constraining
+--   Generic minimal Avalon Streaming interface for pre-constraining widths
 --
 -- Description:
---   Uses spec-matching names (data, valid, ready, channel, etc.)
+--   Provides sized versions of the minimal Avalon ST interface
 --
 -- License:
 -- =============================================================================
@@ -25,29 +25,20 @@
 -- limitations under the License.
 -- =============================================================================
 
-use work.AvalonST.all;
+use work.AvalonST_Minimal.all;
 
-package AvalonST_Generic is
+package AvalonST_Minimal_Generic is
 	generic (
-		constant DATA_BITS    : positive;
-		constant EMPTY_BITS   : positive := 1;
-		constant ERROR_BITS   : positive := 1;
-		constant CHANNEL_BITS : positive := 1
+		constant DATA_BITS : positive
 	);
 
-	-- Full Avalon-ST interface with all optional signals
-	subtype AvalonST_SizedInterface is AvalonST_Interface(
-		Data(DATA_BITS - 1 downto 0),
-		Empty(EMPTY_BITS - 1 downto 0),
-		Error(ERROR_BITS - 1 downto 0),
-		Channel(CHANNEL_BITS - 1 downto 0)
+	-- Sized minimal interface
+	subtype AvalonST_Minimal_SizedInterface is AvalonST_Minimal_Interface(
+		Data(DATA_BITS - 1 downto 0)
 	);
 
-	subtype AvalonST_SizedInterface_Vector is AvalonST_Interface_Vector(open)(
-		Data(DATA_BITS - 1 downto 0),
-		Empty(EMPTY_BITS - 1 downto 0),
-		Error(ERROR_BITS - 1 downto 0),
-		Channel(CHANNEL_BITS - 1 downto 0)
+	subtype AvalonST_Minimal_SizedInterface_Vector is AvalonST_Minimal_Interface_Vector(open)(
+		Data(DATA_BITS - 1 downto 0)
 	);
 
 end package;

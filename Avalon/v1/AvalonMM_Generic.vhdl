@@ -53,19 +53,4 @@ package AvalonMM_Generic is
 		BurstCount(BURSTCOUNT_BITS - 1 downto 0)
 	);
 
-	-- Simplified Avalon-MM interface
-	subtype AvalonMM_Simple_SizedInterface is AvalonMM_Simple_Interface(
-		Address(ADDRESS_BITS - 1 downto 0),
-		WriteData(DATA_BITS - 1 downto 0),
-		ReadData(DATA_BITS - 1 downto 0),
-		ByteEnable(BYTEENABLE_BITS - 1 downto 0)
-	);
-
-	subtype AvalonMM_Simple_SizedInterface_Vector is AvalonMM_Simple_Interface_Vector(open)(
-		Address(ADDRESS_BITS - 1 downto 0),
-		WriteData(DATA_BITS - 1 downto 0),
-		ReadData(DATA_BITS - 1 downto 0),
-		ByteEnable(BYTEENABLE_BITS - 1 downto 0)
-	);
-
 end package;
