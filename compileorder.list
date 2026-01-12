@@ -50,3 +50,14 @@ MIPI/M-PHY.vhdl
 
 # Miscellaneous interfaces
 PoC/CSE.vhdl
+
+# Avalon Memory-Mapped Interfaces
+Avalon/v1/AvalonCommon.vhdl
+Avalon/v1/AvalonMM.vhdl
+Avalon/v1/AvalonMM_Generic.vhdl
+Avalon/v1/AvalonMM_Minimal.vhdl
+Avalon/v1/AvalonMM_Minimal_Generic.vhdl
+Avalon/v1/AvalonST.vhdl
+Avalon/v1/AvalonST_Generic.vhdl
+Avalon/v1/AvalonST_Minimal.vhdl
+Avalon/v1/AvalonST_Minimal_Generic.vhdl

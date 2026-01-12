@@ -52,3 +52,14 @@ analyze MIPI/M-PHY.vhdl
 
 # Miscellaneous interfaces
 analyze PoC/CSE.vhdl
+
+# Avalon interfaces
+analyze Avalon/v1/AvalonCommon.vhdl
+analyze Avalon/v1/AvalonMM.vhdl
+analyze Avalon/v1/AvalonMM_Generic.vhdl
+analyze Avalon/v1/AvalonMM_Minimal.vhdl
+analyze Avalon/v1/AvalonMM_Minimal_Generic.vhdl
+analyze Avalon/v1/AvalonST.vhdl
+analyze Avalon/v1/AvalonST_Generic.vhdl
+analyze Avalon/v1/AvalonST_Minimal.vhdl
+analyze Avalon/v1/AvalonST_Minimal_Generic.vhdl
