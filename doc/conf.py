@@ -33,7 +33,7 @@ sys_path.insert(0, abspath(".."))
 
 project =   githubProject
 author =    "Patrick Lehmann"
-copyright = "Copyright 2016-2026 Open Source VHDL Group"
+copyright = "2016-2026 Open Source VHDL Group"
 version =   ".".join(githubVersion.split(".")[:2])  # e.g. 2.3    The short X.Y version.
 release =   githubVersion
 
@@ -226,7 +226,7 @@ todo_link_only = True
 report_unittest_testsuites = {
 	"src": {
 		"name":        f"{githubProject}",
-		"xml_report":  "../report/unit/unittest.xml",
+		"xml_report":  "../report/unit/Unittesting.xml",
 	}
 }
 

@@ -16,8 +16,8 @@ Interface definitions for VHDL-2019.
 
 ## Tests
 
-* VHDL-2019 syntax checked by [NVC](https://github.com/nickg/nvc).
-
+* VHDL-2019 syntax checked by [NVC](https://github.com/nickg/nvc).  
+  See [test results](https://vhdl.github.io/Interfaces/tests/index.html).
 
 ## Contributors
 

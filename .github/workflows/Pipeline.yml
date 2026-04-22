@@ -92,6 +92,7 @@ jobs:
     with:
       unittest_artifacts_pattern: "Interfaces-NVC-XML-*"
       testsuite-summary-name:     "Interfaces"
+      additional_merge_args:      '"--pytest=reduce-depth:Interfaces" --render=tree'
       merged_junit_artifact:      'Interfaces-Report-XML'
       dorny:                      true
 #      codecov:                    true
