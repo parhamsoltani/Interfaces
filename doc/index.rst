@@ -30,8 +30,8 @@ This library is licensed under **Apache License, 2.0**.
    :caption: Overview
    :hidden:
 
-   introduction
-   usage
+   Introduction
+   Usage
 
 .. toctree::
    :caption: Interfaces
@@ -44,5 +44,6 @@ This library is licensed under **Apache License, 2.0**.
    :hidden:
 
    tests/index
-   license
+   License
+   Doc-License
    genindex

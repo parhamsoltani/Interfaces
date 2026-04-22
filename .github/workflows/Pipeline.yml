@@ -7,7 +7,18 @@ on:
   schedule:
     - cron: '0 15 * * *'
 
+permissions:
+  contents: read
+  pages:    write
+  id-token: write
+
 jobs:
+  Prepare:
+    uses: pyTooling/Actions/.github/workflows/PrepareJob.yml@r7
+    with:
+      main_branch:    'main'
+      release_branch: 'main'
+
   NVC:
     name: ${{ matrix.icon }}${{ matrix.name }} - NVC
     runs-on: ${{ matrix.image }}
@@ -25,7 +36,7 @@ jobs:
 
     steps:
       - name: ⏬ Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: recursive
 
@@ -65,9 +76,9 @@ jobs:
           cat temp/*.xml
 
       - name: '📤 Upload artifact: logs'
-        uses: actions/upload-artifact@v4
+        uses: pyTooling/upload-artifact@v7
         with:
-          name: junit-${{ matrix.name }}-nvc
+          name: Interfaces-NVC-XML-${{ matrix.name }}
           include-hidden-files: true
           path: |
             temp/*.xml
@@ -75,12 +86,90 @@ jobs:
           retention-days: 1
 
   PublishTestResults:
-    uses: pyTooling/Actions/.github/workflows/PublishTestResults.yml@r5
+    uses: pyTooling/Actions/.github/workflows/PublishTestResults.yml@r7
     needs:
       - NVC
     with:
-      unittest_artifacts_pattern: "junit-*"
+      unittest_artifacts_pattern: "Interfaces-NVC-XML-*"
       testsuite-summary-name:     "Interfaces"
+      merged_junit_artifact:      'Interfaces-Report-XML'
       dorny:                      true
 #      codecov:                    true
+#    secrets:
+#      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+  IntermediateCleanUp:
+    uses: pyTooling/Actions/.github/workflows/CleanupArtifacts.yml@r7
+    needs:
+      - PublishTestResults
+    with:
+      others: |
+        Interfaces-NVC-XML-*
+
+  Documentation:
+    uses: pyTooling/Actions/.github/workflows/SphinxDocumentation.yml@r7
+    needs:
+      - PublishTestResults
+#    if: success() || failure()
+    with:
+      requirements:          '-r doc/requirements.txt'
+      doc_directory:         'doc'
+      unittest_xml_artifact: 'Interfaces-Report-XML'
+      html_artifact:         'Interfaces-HTML'
+      latex_artifact:        'Interfaces-LaTeX'
+
+  PDFDocumentation:
+    uses: pyTooling/Actions/.github/workflows/LaTeXDocumentation.yml@r7
+    needs:
+      - Documentation
+    if: (success() || failure()) && needs.Documentation.result == 'success'
+    with:
+      document:       'Interfaces'
+      latex_artifact: 'Interfaces-LaTeX'
+      pdf_artifact:   'Interfaces-PDF'
+      can-fail:       'true'
+
+  PublishToGitHubPages:
+    uses: pyTooling/Actions/.github/workflows/PublishToGitHubPages.yml@r7
+    needs:
+      - NVC
+      - Documentation
+#    if: (success() || failure()) && needs.Documentation.result == 'success'
+    with:
+      doc:      'Interfaces-HTML'
+#      coverage: 'Interfaces-Coverage-HTML'
+
+  AutoTag:
+    uses: pyTooling/Actions/.github/workflows/TagReleaseCommit.yml@r7
+    needs:
+      - Prepare
+      - PublishToGitHubPages
+    if: needs.Prepare.outputs.is_release_commit == 'true' && github.event_name != 'schedule'
+    permissions:
+      contents: write  # required for create tag
+      actions:  write  # required for trigger workflow
+    with:
+      version:  ${{ needs.Prepare.outputs.version }}
+      auto_tag: ${{ needs.Prepare.outputs.is_release_commit }}
+
+  Release:
+    uses: pyTooling/Actions/.github/workflows/PublishReleaseNotes.yml@r7
+    needs:
+      - Prepare
+      - PublishToGitHubPages
+    if: needs.Prepare.outputs.is_release_tag == 'true'
+    permissions:
+      contents: write
+      actions:  write
+    with:
+      prerelease: true
+      replacements: |
+        version=${{ needs.Prepare.outputs.version }}
+      tag: ${{ needs.Prepare.outputs.version }}
+      description: |
+        # Interfaces %version%
+      inventory-json: "inventory.json"
+      inventory-version: ${{ needs.Prepare.outputs.version }}
+      assets: |
+
     secrets: inherit
