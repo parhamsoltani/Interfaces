@@ -10,7 +10,7 @@
 --
 -- License:
 -- =============================================================================
--- Copyright 2025-2025 Open Source VHDL Group
+-- Copyright 2025-2026 Open Source VHDL Group
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ package AvalonMM_Minimal is
 		Write       : std_ulogic;
 		WriteData   : Data_Type;
 		ByteEnable  : ByteEnable_Type;
-		
+
 		-- Slave signals
 		ReadData    : Data_Type;
 		WaitRequest : std_ulogic;
@@ -55,7 +55,7 @@ package AvalonMM_Minimal is
 		Write       : out;
 		WriteData   : out;
 		ByteEnable  : out;
-		
+
 		-- Master inputs (slave outputs)
 		ReadData    : in;
 		WaitRequest : in;

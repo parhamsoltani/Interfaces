@@ -10,7 +10,7 @@
 --
 -- License:
 -- =============================================================================
--- Copyright 2025-2025 Open Source VHDL Group
+-- Copyright 2025-2026 Open Source VHDL Group
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -40,22 +40,22 @@ package AvalonMM is
 		Write              : std_ulogic;        -- Write request
 		WriteData          : Data_Type;         -- Write data
 		ByteEnable         : ByteEnable_Type;   -- Byte enable
-		
+
 		-- Slave signals
 		ReadData           : Data_Type;         -- Read data
 		ReadDataValid      : std_ulogic;        -- Read data valid
 		WaitRequest        : std_ulogic;        -- Wait request
 		Response           : Response_Type;     -- Response
-		
+
 		-- Optional burst signals
 		BurstCount         : BurstCount_Type;   -- Burst count
-		
+
 		-- Optional pipelining signals
 		WriteResponseValid : std_ulogic;        -- Write response valid
-		
+
 		-- Optional lock signal
 		Lock               : std_ulogic;        -- Lock
-		
+
 		-- Optional debug signals
 		DebugAccess        : std_ulogic;        -- Debug access
 	end record;
@@ -72,7 +72,7 @@ package AvalonMM is
 		BurstCount         : out;
 		Lock               : out;
 		DebugAccess        : out;
-		
+
 		-- Master inputs
 		ReadData           : in;
 		ReadDataValid      : in;
