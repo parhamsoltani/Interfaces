@@ -31,26 +31,6 @@ AMBA/AXI/v4/AXI4Lite.presized.vhdl
 AMBA/AXI/v4/AXI4Stream.vhdl
 AMBA/AXI/v4/AXI4Stream_Generic.vhdl
 
-# Low-speed interfaces
-IO/I2C.vhdl
-IO/SPI.vhdl
-IO/I2S.vhdl
-IO/JTAG.vhdl
-IO/UART.vhdl
-
-# Ethernet
-IO/Ethernet.vhdl
-IO/Cages.vhdl
-
-# Video interfaces
-Video/VGA.vhdl
-MIPI/C-PHY.vhdl
-MIPI/D-PHY.vhdl
-MIPI/M-PHY.vhdl
-
-# Miscellaneous interfaces
-PoC/CSE.vhdl
-
 # Avalon Memory-Mapped Interfaces
 Avalon/v1/AvalonCommon.vhdl
 Avalon/v1/AvalonMM.vhdl
@@ -61,3 +41,26 @@ Avalon/v1/AvalonST.vhdl
 Avalon/v1/AvalonST_Generic.vhdl
 Avalon/v1/AvalonST_Minimal.vhdl
 Avalon/v1/AvalonST_Minimal_Generic.vhdl
+
+# Low-speed interfaces
+#IO/BiSS.vhdl
+IO/I2C.vhdl
+IO/SPI.vhdl
+IO/I2S.vhdl
+IO/JTAG.vhdl
+IO/UART.vhdl
+
+# Ethernet
+Network/Ethernet.vhdl
+Network/Cages.vhdl
+
+# Video interfaces
+Video/VGA.vhdl
+Video/C-PHY.vhdl
+Video/D-PHY.vhdl
+Video/M-PHY.vhdl
+
+# Miscellaneous interfaces
+PoC/CSE.vhdl
+
+# WishBone
