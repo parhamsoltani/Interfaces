@@ -80,5 +80,4 @@ package VGA is
 	alias VGA_ReceiverView is VGA_TransmitterView'converse;
 
 	type VGA_Interface_Vector is array(natural range <>) of VGA_Interface;
-
 end package;

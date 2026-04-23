@@ -69,5 +69,4 @@ package AvalonST is
 		Ready         : in;
 	end view;
 	alias AvalonST_SinkView is AvalonST_SourceView'converse;
-
 end package;

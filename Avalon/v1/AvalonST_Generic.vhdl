@@ -49,5 +49,4 @@ package AvalonST_Generic is
 		Error(ERROR_BITS - 1 downto 0),
 		Channel(CHANNEL_BITS - 1 downto 0)
 	);
-
 end package;

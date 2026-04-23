@@ -56,5 +56,4 @@ package JTAG is
 		TDO  : out;
 	end view;
 	alias JTAG_TesterView is JTAG_DeviceView'converse;
-
 end package;

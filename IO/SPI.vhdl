@@ -49,5 +49,4 @@ package SPI is
 		SS_n  : out;
 	end view;
 	alias SPI_SlaveView is SPI_MasterView'converse;
-
 end package;

@@ -81,5 +81,4 @@ package AvalonMM is
 		WriteResponseValid : in;
 	end view;
 	alias AvalonMM_SlaveView is AvalonMM_MasterView'converse;
-
 end package;

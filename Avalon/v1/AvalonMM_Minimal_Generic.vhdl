@@ -49,5 +49,4 @@ package AvalonMM_Minimal_Generic is
 		ReadData(DATA_BITS - 1 downto 0),
 		ByteEnable(BYTEENABLE_BITS - 1 downto 0)
 	);
-
 end package;

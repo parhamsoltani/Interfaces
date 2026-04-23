@@ -45,5 +45,4 @@ package CSE is
 		Error   : in;
 	end view;
 	alias CSE_InView is CSE_OutView'converse;
-
 end package;

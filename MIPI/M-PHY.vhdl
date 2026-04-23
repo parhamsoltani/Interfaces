@@ -42,5 +42,4 @@ package MPHY is
 		RX : view ( Differatial_InView  );
 	end view;
 	alias Differatial_InView is Differatial_OutView'converse;
-
 end package;

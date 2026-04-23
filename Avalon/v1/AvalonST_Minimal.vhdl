@@ -53,5 +53,4 @@ package AvalonST_Minimal is
 		Ready : in;
 	end view;
 	alias AvalonST_Minimal_SinkView is AvalonST_Minimal_SourceView'converse;
-
 end package;

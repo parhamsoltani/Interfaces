@@ -61,5 +61,4 @@ package AvalonMM_Minimal is
 		WaitRequest : in;
 	end view;
 	alias AvalonMM_Minimal_SlaveView is AvalonMM_Minimal_MasterView'converse;
-
 end package;

@@ -88,5 +88,4 @@ package Axi4Common is
 		Clock  : std_ulogic;
 		Reset  : std_ulogic;
 	end record;
-
 end package;

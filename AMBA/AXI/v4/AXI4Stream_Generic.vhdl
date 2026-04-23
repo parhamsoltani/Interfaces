@@ -41,5 +41,4 @@ package Axi4Stream_Generic is
 		Keep(KEEP_BITS - 1 downto 0),
 		User(USER_BITS -  1 downto 0)
 	);
-
 end package;

@@ -176,5 +176,4 @@ package Axi4 is
 		ReadData       : view Axi4_ReadData_ManagerView;
 	end view;
 	alias Axi4_SubordinateView is Axi4_ManagerView'converse;
-
 end package;

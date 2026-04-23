@@ -77,5 +77,4 @@ package Common is
 		T : out;
 	end view;
 	alias Tristate_InView is Tristate_OutView'converse;
-
 end package;

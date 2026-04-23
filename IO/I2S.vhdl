@@ -56,5 +56,4 @@ package I2S is
 		SD  : out;
 	end view;
 	alias I2S_DestSync_ReceiverView  is I2S_DestSync_TransmitterView'converse;
-
 end package;

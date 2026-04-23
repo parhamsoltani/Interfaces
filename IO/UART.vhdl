@@ -43,5 +43,4 @@ package UART is
 		RX  : in;
 	end view;
 	alias UART_ReceiverView is UART_TransmitterView'converse;
-
 end package;

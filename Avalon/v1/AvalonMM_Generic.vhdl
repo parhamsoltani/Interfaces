@@ -52,5 +52,4 @@ package AvalonMM_Generic is
 		ByteEnable(BYTEENABLE_BITS - 1 downto 0),
 		BurstCount(BURSTCOUNT_BITS - 1 downto 0)
 	);
-
 end package;

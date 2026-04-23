@@ -66,5 +66,4 @@ package I2C is
 		SDA : view Tristate_OutView;
 	end view;
 	alias I2C_IOBView is I2C_ControllerView'converse;
-
 end package;
