@@ -11,7 +11,8 @@ Ethernet
 :Website:   `www.ieee802.org/3 <https://www.ieee802.org/3/>`__
 :Download:  `IEEE Std. 802.3 <https://standards.ieee.org/ieee/802.3/10422/>`__ via *IEEE Get Program*
 :Standard:  IEEE Std. 802.3
-:Wikipedia: :wiki:`Ethernet`
+:Wikipedia: :wiki:`Ethernet` |br|
+            :wiki:`IEEE_802.3`
 
 .. _NET/Eth/MII:
 
