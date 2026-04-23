@@ -32,9 +32,9 @@ use     IEEE.numeric_std.all;
 package AvalonCommon is
 	-- Common types
 	subtype Data_Type        is std_ulogic_vector;
-	subtype Address_Type     is unsigned;
+	subtype Address_Type     is unresolved_unsigned;
 	subtype ByteEnable_Type  is std_ulogic_vector;
-	subtype BurstCount_Type  is unsigned;
+	subtype BurstCount_Type  is unresolved_unsigned;
 
 	-- Avalon-MM Response
 	subtype Response_Type is std_ulogic_vector(1 downto 0);
