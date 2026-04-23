@@ -54,13 +54,13 @@ IO/UART.vhdl
 Network/Ethernet.vhdl
 Network/Cages.vhdl
 
+# Miscellaneous interfaces
+PoC/CSE.vhdl
+
 # Video interfaces
 Video/VGA.vhdl
 Video/C-PHY.vhdl
 Video/D-PHY.vhdl
 Video/M-PHY.vhdl
-
-# Miscellaneous interfaces
-PoC/CSE.vhdl
 
 # WishBone

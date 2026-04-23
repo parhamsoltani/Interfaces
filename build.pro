@@ -33,26 +33,6 @@ analyze AMBA/AXI/v4/AXI4Lite.presized.vhdl
 analyze AMBA/AXI/v4/AXI4Stream.vhdl
 analyze AMBA/AXI/v4/AXI4Stream_Generic.vhdl
 
-# Low-speed interfaces
-analyze IO/I2C.vhdl
-analyze IO/SPI.vhdl
-analyze IO/I2S.vhdl
-analyze IO/JTAG.vhdl
-analyze IO/UART.vhdl
-
-# Ethernet
-analyze IO/Ethernet.vhdl
-analyze IO/Cages.vhdl
-
-# Video interfaces
-analyze Video/VGA.vhdl
-analyze MIPI/C-PHY.vhdl
-analyze MIPI/D-PHY.vhdl
-analyze MIPI/M-PHY.vhdl
-
-# Miscellaneous interfaces
-analyze PoC/CSE.vhdl
-
 # Avalon interfaces
 analyze Avalon/v1/AvalonCommon.vhdl
 analyze Avalon/v1/AvalonMM.vhdl
@@ -63,3 +43,26 @@ analyze Avalon/v1/AvalonST.vhdl
 analyze Avalon/v1/AvalonST_Generic.vhdl
 analyze Avalon/v1/AvalonST_Minimal.vhdl
 analyze Avalon/v1/AvalonST_Minimal_Generic.vhdl
+
+# Low-speed interfaces
+#analyze IO/BiSS.vhdl
+analyze IO/I2C.vhdl
+analyze IO/SPI.vhdl
+analyze IO/I2S.vhdl
+analyze IO/JTAG.vhdl
+analyze IO/UART.vhdl
+
+# Ethernet
+analyze Network/Ethernet.vhdl
+analyze Network/Cages.vhdl
+
+# Miscellaneous interfaces
+analyze PoC/CSE.vhdl
+
+# Video interfaces
+analyze Video/VGA.vhdl
+analyze Video/C-PHY.vhdl
+analyze Video/D-PHY.vhdl
+analyze Video/M-PHY.vhdl
+
+# WishBone

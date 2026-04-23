@@ -25,8 +25,8 @@ exec 3>${UnittestSummaryFile}
 
 printf "%s\n" "Analyzing '${VHDLLibrary}' ..."
 
-printf "<?xml version=\"%s\" encoding=\"%s\"?>\n" "1.0" "utf-8"                                                        >&3
-printf "<testsuites time=\"%s\">\n"               "%TIME%"                                                             >&3
+printf "<?xml version=\"%s\" encoding=\"%s\"?>\n"                                  "1.0" "utf-8"                                                                     >&3
+printf "<testsuites name=\"%s\" time=\"%s\">\n"                                    "${UnittestTestsuitename}" "%TIME%"                                               >&3
 printf "  <testsuite name=\"%s\" hostname=\"%s\" timestamp=\"%s\" time=\"%s\">\n"  "${UnittestTestsuitename}" "$(hostname -f)" "$(date --iso-8601=seconds)" "%TIME%" >&3
 
 libraryBegin=$(date +%s%N)
