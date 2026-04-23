@@ -14,7 +14,7 @@ VHDL Interfaces
       1. Define all necessary signals in a VHDL record type. If interfaces are more complicated and grouped in
          sub-interfaces, records can be nested. If a record sub-element is an array, usually these sub-elements are
          unconstrained, thus they can be constrained later.
-      2. Define a ``mode view``, which defines *directions* (modes) for each record sub-element. Usually, the reverse
+      2. Define a ``view``, which defines *directions* (modes) for each record sub-element. Usually, the reverse
          view is created by creating an alias using the ``'converse`` attribute.
 
    .. grid-item::
@@ -53,51 +53,79 @@ Supported Interfaces
    .. grid-item-card:: AMBA
       :columns: 3
 
-      * AXI:
+      * :doc:`AXI`:
 
-        * AXI4
-        * AXI4-Lite
-        * AXI4-Stream
+        * :ref:`AXI4/Full`
+        * :ref:`AXI4/Lite`
+        * :ref:`AXI4/Stream`
 
    .. grid-item-card:: Avalon
       :columns: 3
 
-      * Avalon-MM
-      * Avalon-ST
+      * :ref:`Avalon/MM`
+      * :ref:`Avalon/ST`
 
    .. grid-item-card:: WishBone
       :columns: 3
 
-      * WishBone B3
+      * :ref:`WB/OpenCores`
+
+        * :ref:`WB/OpenCores/B3`
+        * :ref:`WB/OpenCores/B4`
+
+      * :ref:`WB/FOSSi`
+
+        * :ref:`WB/FOSSi/WB`
 
    .. grid-item-card:: PoC Library
       :columns: 3
 
-      * CSE
+      * :ref:`POC/CSE`
+      * :ref:`POC/FIFO`
 
    .. grid-item-card:: I/O
       :columns: 3
 
-      * BiSS
-      * Cages: SFP/QSFP
-      * Ethernet: MII, RMII, GMII, RGMII, SGMII
-      * I²C
-      * I²S
-      * JTAG
-      * SPI
-      * UART
+      * :ref:`IO/BiSS`
+      * :ref:`IO/I2C`
+      * :ref:`IO/I2S`
+      * :ref:`IO/JTAG`
+      * :ref:`IO/SPI`
+      * :ref:`IO/UART`
 
-   .. grid-item-card:: MIPI
+   .. grid-item-card:: PCI Express
       :columns: 3
 
-      * C-PHY
-      * D-PHY
-      * M-PHY
+      * :ref:`PCIE`
+
+   .. grid-item-card:: Network
+      :columns: 3
+
+      * Ethernet
+
+        * MII
+        * RMII
+        * GMII
+        * RGMII
+        * SGMII
+
+      * Cages:
+
+        * SFP
+        * QSFP
 
    .. grid-item-card:: Video
       :columns: 3
 
-      * VGA
+      * MIPI:
+
+        * :ref:`VIDEO/MIPI/CPHY`
+        * :ref:`VIDEO/MIPI/DPHY`
+        * :ref:`VIDEO/MIPI/MPHY`
+
+      * VESA
+
+        * :ref:`VIDEO/VESA/VGA`
 
 
 .. _ADOPTERS:
@@ -152,7 +180,14 @@ The accompanying documentation is licensed under :doc:`Creative Commons - Attrib
    :caption: Interfaces
    :hidden:
 
-   io/index
+   AXI
+   Avalon
+   IO
+   Network
+   PCIe
+   PoC
+   Video
+   WishBone
 
 .. toctree::
    :caption: Appendix

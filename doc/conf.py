@@ -180,6 +180,7 @@ intersphinx_mapping = {
 	"python": ("https://docs.python.org/3", None),
 	# "ghdl":   ("https://setuptools.pypa.io/en/latest", None),
 	# "nvc":    ("https://setuptools.pypa.io/en/latest", None),
+	"poc":    ("https://vhdl.github.io/PoC", None),
 }
 
 

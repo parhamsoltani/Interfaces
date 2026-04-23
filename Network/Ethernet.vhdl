@@ -173,5 +173,4 @@ package Ethernet is
 
 	-- XAUI
 	-- 4 lanes á 3.125 Gbps
-
 end package;

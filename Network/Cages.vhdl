@@ -94,5 +94,4 @@ package Cages is
 		RX              : view ( Differatial_InView );
 	end view;
 	alias QSFP_CageView is QSFP_IcView'converse;
-
 end package;
