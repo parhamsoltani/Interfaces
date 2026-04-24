@@ -47,5 +47,4 @@ package CPHY is
 	type CPHYLane_Interface_Vector is
 		array(natural range <>)
 		of CPHYLane_Interface;
-
 end package;

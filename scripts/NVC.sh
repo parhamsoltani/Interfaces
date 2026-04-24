@@ -1,6 +1,6 @@
 #!/bin/bash
 # ==================================================================================================================== #
-# Copyright 2016-2025 Open Source VHDL Group                                                                           #
+# Copyright 2016-2026 Open Source VHDL Group                                                                           #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
 # you may not use this file except in compliance with the License.                                                     #
@@ -25,8 +25,8 @@ exec 3>${UnittestSummaryFile}
 
 printf "%s\n" "Analyzing '${VHDLLibrary}' ..."
 
-printf "<?xml version=\"%s\" encoding=\"%s\"?>\n" "1.0" "utf-8"                                                        >&3
-printf "<testsuites time=\"%s\">\n"               "%TIME%"                                                             >&3
+printf "<?xml version=\"%s\" encoding=\"%s\"?>\n"                                  "1.0" "utf-8"                                                                     >&3
+printf "<testsuites name=\"%s\" time=\"%s\">\n"                                    "${UnittestTestsuitename}" "%TIME%"                                               >&3
 printf "  <testsuite name=\"%s\" hostname=\"%s\" timestamp=\"%s\" time=\"%s\">\n"  "${UnittestTestsuitename}" "$(hostname -f)" "$(date --iso-8601=seconds)" "%TIME%" >&3
 
 libraryBegin=$(date +%s%N)
