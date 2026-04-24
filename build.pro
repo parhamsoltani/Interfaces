@@ -50,7 +50,7 @@ analyze Wishbone/vB3/Wishbone.vhdl
 analyze Wishbone/vB3/Wishbone_Generic.vhdl
 
 # Low-speed interfaces
-#analyze IO/BiSS.vhdl
+analyze IO/BiSS.vhdl
 analyze IO/I2C.vhdl
 analyze IO/SPI.vhdl
 analyze IO/I2S.vhdl
