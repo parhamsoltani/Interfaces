@@ -127,6 +127,7 @@ jobs:
     with:
       document:       'Interfaces'
       latex_artifact: 'Interfaces-LaTeX'
+      miktex_image:   'pytooling/miktex:sphinx'
       pdf_artifact:   'Interfaces-PDF'
       can-fail:       'true'
 

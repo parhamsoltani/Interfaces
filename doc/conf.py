@@ -6,8 +6,6 @@ from os.path  import abspath
 from pathlib  import Path
 from textwrap import dedent
 
-from pyTooling.Versioning import SemanticVersion
-
 # ==============================================================================
 # Project configuration
 # ==============================================================================

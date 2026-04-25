@@ -8,7 +8,7 @@ WishBone
 OpenCores/Silicore
 ******************
 
-:Website:       `opencores.org ⭢ wishbone<https://opencores.org/howto/wishbone>`__
+:Website:       `opencores.org → wishbone<https://opencores.org/howto/wishbone>`__
 :Wikipedia:     :wiki:`Wishbone_(computer_bus)`
 :Versions:      B.3 - 2002 |br|
                 B.4 - 2010 |br|
