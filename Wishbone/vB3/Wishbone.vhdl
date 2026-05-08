@@ -48,7 +48,7 @@ package Wishbone is
 		WriteEnable : std_ulogic;     -- WE_O  - Write Enable
 		Address     : Address_Type;   -- ADR_O - Address
 		DataOut     : Data_Type;      -- DAT_O - Data (Master to Slave)
-		Select      : Select_Type;    -- SEL_O - Select
+		ByteSelect  : Select_Type;    -- SEL_O - Byte select
 		
 		-- Slave signals (outputs from slave perspective)
 		Acknowledge : std_ulogic;     -- ACK_I - Acknowledge
@@ -75,7 +75,7 @@ package Wishbone is
 		WriteEnable : out;
 		Address     : out;
 		DataOut     : out;
-		Select      : out;
+		ByteSelect  : out;
 		CycleType   : out;
 		BurstType   : out;
 		Tag         : out;
@@ -98,7 +98,7 @@ package Wishbone is
 		WriteEnable : std_ulogic;
 		Address     : Address_Type;
 		DataOut     : Data_Type;
-		Select      : Select_Type;
+		ByteSelect  : Select_Type;
 		
 		-- Slave signals
 		Acknowledge : std_ulogic;
@@ -113,7 +113,7 @@ package Wishbone is
 		WriteEnable : out;
 		Address     : out;
 		DataOut     : out;
-		Select      : out;
+		ByteSelect  : out;
 		
 		-- Master inputs
 		Acknowledge : in;

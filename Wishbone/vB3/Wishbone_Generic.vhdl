@@ -43,7 +43,7 @@ package Wishbone_Generic is
 		Address(ADDRESS_BITS - 1 downto 0),
 		DataOut(DATA_BITS - 1 downto 0),
 		DataIn(DATA_BITS - 1 downto 0),
-		Select(SEL_BITS - 1 downto 0),
+		ByteSelect(SEL_BITS - 1 downto 0),
 		Tag.DataOut(TGD_BITS - 1 downto 0),
 		Tag.DataIn(TGD_BITS - 1 downto 0),
 		Tag.Address(TGA_BITS - 1 downto 0),
@@ -54,7 +54,7 @@ package Wishbone_Generic is
 		Address(ADDRESS_BITS - 1 downto 0),
 		DataOut(DATA_BITS - 1 downto 0),
 		DataIn(DATA_BITS - 1 downto 0),
-		Select(SEL_BITS - 1 downto 0),
+		ByteSelect(SEL_BITS - 1 downto 0),
 		Tag.DataOut(TGD_BITS - 1 downto 0),
 		Tag.DataIn(TGD_BITS - 1 downto 0),
 		Tag.Address(TGA_BITS - 1 downto 0),
@@ -66,14 +66,14 @@ package Wishbone_Generic is
 		Address(ADDRESS_BITS - 1 downto 0),
 		DataOut(DATA_BITS - 1 downto 0),
 		DataIn(DATA_BITS - 1 downto 0),
-		Select(SEL_BITS - 1 downto 0)
+		ByteSelect(SEL_BITS - 1 downto 0)
 	);
 
 	subtype Wishbone_Simple_SizedInterface_Vector is Wishbone_Simple_Interface_Vector(open)(
 		Address(ADDRESS_BITS - 1 downto 0),
 		DataOut(DATA_BITS - 1 downto 0),
 		DataIn(DATA_BITS - 1 downto 0),
-		Select(SEL_BITS - 1 downto 0)
+		ByteSelect(SEL_BITS - 1 downto 0)
 	);
 
 end package;
