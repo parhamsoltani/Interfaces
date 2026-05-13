@@ -7,7 +7,7 @@ The *Advanced eXtensible Interface* (AXI) is an on-chip communication bus protoc
 *Advanced Microcontroller Bus Architecture* specification (AMBA). AXI is royalty-free and its specification is freely
 available from ARM.
 
-:website:   `developer.arm.com ⭢ AXI Protocol Overview <https://developer.arm.com/documentation/102202/0300/AXI-protocol-overview/>`__
+:website:   `developer.arm.com → AXI Protocol Overview <https://developer.arm.com/documentation/102202/0300/AXI-protocol-overview/>`__
 :Wikipedia: :wiki:`Advanced_eXtensible_Interface`
 :Versions:  3 - 2003 |br|
             4 - 2010 |br|

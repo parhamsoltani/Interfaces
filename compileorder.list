@@ -48,7 +48,7 @@ Wishbone/vB3/Wishbone.vhdl
 Wishbone/vB3/Wishbone_Generic.vhdl
 
 # Low-speed interfaces
-#IO/BiSS.vhdl
+IO/BiSS.vhdl
 IO/I2C.vhdl
 IO/SPI.vhdl
 IO/I2S.vhdl

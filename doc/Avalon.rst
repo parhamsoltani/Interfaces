@@ -3,7 +3,7 @@
 Avalon
 ######
 
-:Specification: `docs.altera.com ⭢ Avalon Interface Specifications <https://docs.altera.com/r/docs/683091/current>`__
+:Specification: `docs.altera.com → Avalon Interface Specifications <https://docs.altera.com/r/docs/683091/current>`__
 
 .. _Avalon/MM:
 
