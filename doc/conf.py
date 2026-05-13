@@ -109,10 +109,12 @@ html_last_updated_fmt = "%d.%m.%Y"
 latex_engine = "lualatex"
 latex_use_xindy = False
 latex_elements = {
-	"papersize": "a4paper",      # The paper size ('letterpaper' or 'a4paper').
-	"pointsize": "10pt",         # The font size ('10pt', '11pt' or '12pt').
-	"inputenc":   "",            # Let LuaLaTeX handle input encoding
-	"utf8extra":  "",
+	"papersize":   "a4paper",      # The paper size ('letterpaper' or 'a4paper').
+	"pointsize":   "10pt",         # The font size ('10pt', '11pt' or '12pt').
+	"inputenc":    "",            # Let LuaLaTeX handle input encoding
+	"utf8extra":   "",
+	"polyglossia": "",
+	"babel":      r"\usepackage[english]{babel}",
 	"fontenc":    r"\usepackage{fontspec}",  # Disable the default T1 font encoding (Essential for LuaLaTeX)
 	"fontpkg":    dedent("""\
 		\\usepackage{unicode-math}
@@ -136,7 +138,6 @@ latex_elements = {
 	"makeindex":  r"\usepackage[columns=1]{idxlayout}\makeindex",
 	"printindex": r"\def\twocolumn[#1]{#1}\printindex",
 }
-
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
