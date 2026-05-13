@@ -20,14 +20,14 @@ VHDLLibrary="Interfaces"
 UnittestSummaryFile="${2:-unittest.xml}"
 UnittestTestsuitename="${3:-Interfaces}"
 
-printf "Open '${UnittestSummaryFile}' ...\n"
+printf -- "Open '${UnittestSummaryFile}' ...\n"
 exec 3>${UnittestSummaryFile}
 
-printf "%s\n" "Analyzing '${VHDLLibrary}' ..."
+printf -- "%s\n" "Analyzing '${VHDLLibrary}' ..."
 
-printf "<?xml version=\"%s\" encoding=\"%s\"?>\n"                                  "1.0" "utf-8"                                                                     >&3
-printf "<testsuites name=\"%s\" time=\"%s\">\n"                                    "${UnittestTestsuitename}" "%TIME%"                                               >&3
-printf "  <testsuite name=\"%s\" hostname=\"%s\" timestamp=\"%s\" time=\"%s\">\n"  "${UnittestTestsuitename}" "$(hostname -f)" "$(date --iso-8601=seconds)" "%TIME%" >&3
+printf -- "<?xml version=\"%s\" encoding=\"%s\"?>\n"                                  "1.0" "utf-8"                                                                     >&3
+printf -- "<testsuites name=\"%s\" time=\"%s\">\n"                                    "${UnittestTestsuitename}" "%TIME%"                                               >&3
+printf -- "  <testsuite name=\"%s\" hostname=\"%s\" timestamp=\"%s\" time=\"%s\">\n"  "${UnittestTestsuitename}" "$(hostname -f)" "$(date --iso-8601=seconds)" "%TIME%" >&3
 
 libraryBegin=$(date +%s%N)
 while read -r packagePath; do
@@ -35,29 +35,30 @@ while read -r packagePath; do
 	testname="$package"
 	classname=$(dirname "${packagePath}" | sed 's|/|.|g')
 
-	printf "  %-60s " "Analyzing '${packagePath}' ..."
+	printf -- "  %-60s " "Analyzing '${packagePath}' ..."
 	analyzeBegin=$(date +%s%N)
 	output=$(nvc --std=2019 -a "../${packagePath}" 2>&1)
 	retCode=$?
+	printf -- "${output}\n"
 	error=${output//</&lt;}
 	error=${error//>/&gt;}
-	duration=$(echo "$(date +%s%N) ${analyzeBegin}" | awk '{printf "%.3f", ($1 - $2)/1000000000}')
-	printf "    <testcase name=\"%s\" classname=\"%s\" time=\"%s\"" "${testname}" "${classname}" "${duration}" >&3
+	duration=$(echo "$(date +%s%N) ${analyzeBegin}" | awk '{printf -- "%.3f", ($1 - $2)/1000000000}')
+	printf -- "    <testcase name=\"%s\" classname=\"%s\" time=\"%s\"" "${testname}" "${classname}" "${duration}" >&3
 	if [[ $retCode -eq 0 ]]; then
-		printf "  OK\n"
-		printf " />\n"                                      >&3
+		printf -- "  OK\n"
+		printf -- " />\n"                                      >&3
 	else
-		printf "  FAILED\n"
-		printf " >\n"                                       >&3
-		printf "      <failure>%s</failure>\n" "${error}"   >&3
-		printf "    </testcase>\n"                          >&3
+		printf -- "  FAILED\n"
+		printf -- " >\n"                                       >&3
+		printf -- "      <failure>%s</failure>\n" "${error}"   >&3
+		printf -- "    </testcase>\n"                          >&3
 	fi
 done < <(grep -vP '^\s*$|^\s*\#' ${CompileOrderList})
-duration=$(echo "$(date +%s%N) ${libraryBegin}" | awk '{printf "%.3f", ($1 - $2)/1000000000}')
+duration=$(echo "$(date +%s%N) ${libraryBegin}" | awk '{printf -- "%.3f", ($1 - $2)/1000000000}')
 
-printf "  </testsuite>\n"   >&3
-printf "</testsuites>\n"    >&3
+printf -- "  </testsuite>\n"   >&3
+printf -- "</testsuites>\n"    >&3
 exec 3>-
 
-printf "Duration: %s s\n\n" "${duration}"
+printf -- "Duration: %s s\n\n" "${duration}"
 sed -i "s/%TIME%/${duration}/g" ${UnittestSummaryFile}

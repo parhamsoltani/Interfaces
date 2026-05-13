@@ -27,8 +27,8 @@ jobs:
       matrix:
         include:
           - {icon: "🐧",   name: "Ubuntu",  image: "ubuntu-24.04", shell: "bash"}
-##        - {icon: "🪟",   name: "Windows", image: "windows-2022", shell: "powershell"}      # Scripting is Bash-based
-          - {icon: "🪟🟨", name: "Windows", image: "windows-2022", shell: "msys2 {0}"}       # Installation in Windows via MSI, but called from UCRT64.
+##        - {icon: "🪟",   name: "Windows", image: "windows-2025", shell: "powershell"}      # Scripting is Bash-based
+          - {icon: "🪟🟨", name: "Windows", image: "windows-2025", shell: "msys2 {0}"}       # Installation in Windows via MSI, but called from UCRT64.
 
     defaults:
       run:
@@ -71,7 +71,6 @@ jobs:
           ../scripts/NVC.sh
 
       - name: 🚧 Inspect Ant+JUnit Unittest Summary XML
-#        if: matrix.name == 'Ubuntu'
         run: |
           cat temp/*.xml
 
