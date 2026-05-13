@@ -10,7 +10,7 @@
 --
 -- License:
 -- =============================================================================
--- Copyright 2025-2025 Open Source VHDL Group
+-- Copyright 2025-2026 Open Source VHDL Group
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ package AvalonST_Minimal is
 		-- Source signals
 		Data  : Data_Type;
 		Valid : std_ulogic;
-		
+
 		-- Sink signals
 		Ready : std_ulogic;
 	end record;
@@ -48,10 +48,9 @@ package AvalonST_Minimal is
 		-- Source outputs
 		Data  : out;
 		Valid : out;
-		
+
 		-- Source inputs (sink outputs)
 		Ready : in;
 	end view;
 	alias AvalonST_Minimal_SinkView is AvalonST_Minimal_SourceView'converse;
-
 end package;

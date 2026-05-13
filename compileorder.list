@@ -1,5 +1,5 @@
 # ==================================================================================================================== #
-# Copyright 2016-2025 Open Source VHDL Group                                                                           #
+# Copyright 2016-2026 Open Source VHDL Group                                                                           #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
 # you may not use this file except in compliance with the License.                                                     #
@@ -48,6 +48,7 @@ Wishbone/vB3/Wishbone.vhdl
 Wishbone/vB3/Wishbone_Generic.vhdl
 
 # Low-speed interfaces
+#IO/BiSS.vhdl
 IO/I2C.vhdl
 IO/SPI.vhdl
 IO/I2S.vhdl
@@ -55,14 +56,14 @@ IO/JTAG.vhdl
 IO/UART.vhdl
 
 # Ethernet
-IO/Ethernet.vhdl
-IO/Cages.vhdl
-
-# Video interfaces
-Video/VGA.vhdl
-MIPI/C-PHY.vhdl
-MIPI/D-PHY.vhdl
-MIPI/M-PHY.vhdl
+Network/Ethernet.vhdl
+Network/Cages.vhdl
 
 # Miscellaneous interfaces
 PoC/CSE.vhdl
+
+# Video interfaces
+Video/VGA.vhdl
+Video/C-PHY.vhdl
+Video/D-PHY.vhdl
+Video/M-PHY.vhdl

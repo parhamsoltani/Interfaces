@@ -1,97 +1,76 @@
-# Configuration file for the Sphinx documentation builder.
-#
-# This file only contains a selection of the most common options. For a full
-# list see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
-
-# -- Path setup --------------------------------------------------------------
-
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-import os
-import sys
-sys.path.insert(0, os.path.abspath('.'))
-sys.path.insert(0, os.path.abspath('..'))
-#sys.path.insert(0, os.path.abspath('_extensions'))
-#sys.path.insert(0, os.path.abspath('_themes/sphinx_rtd_theme'))
+from sys      import path as sys_path
+from os.path  import abspath
+from pathlib  import Path
+from textwrap import dedent
+
+from pyTooling.Versioning import SemanticVersion
+
+# ==============================================================================
+# Project configuration
+# ==============================================================================
+githubNamespace = "VHDL"
+githubProject =   "Interfaces"
+githubVersion =   "1.1.1"
 
 
 # ==============================================================================
-# Project information
+# Project paths
 # ==============================================================================
-project = 'VHDL Interfaces'
-copyright = '2016-2020, Open Source VHDL Group, CC-BY 4.0'
-author = 'OSVG - Open Source VHDL Group'
+ROOT = Path(__file__).resolve().parent
 
-# -- General configuration ---------------------------------------------------
+sys_path.insert(0, abspath("."))
+sys_path.insert(0, abspath(".."))
 
-# Add any Sphinx extension module names here, as strings. They can be
-# extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
-# ones.
-extensions = [
-]
 
 # ==============================================================================
-# Versioning
+# Project information and versioning
 # ==============================================================================
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
-from subprocess import check_output
 
-def _IsUnderGitControl():
-	return (check_output(["git", "rev-parse", "--is-inside-work-tree"], universal_newlines=True).strip() == "true")
-
-def _LatestTagName():
-	return check_output(["git", "describe", "--abbrev=0", "--tags"], universal_newlines=True).strip()
-
-# The full version, including alpha/beta/rc tags
-version = "0.1"     # The short X.Y version.
-release = "0.1.0"   # The full version, including alpha/beta/rc tags.
-try:
-	if _IsUnderGitControl:
-		latestTagName = _LatestTagName()[1:]		# remove prefix "v"
-		versionParts =  latestTagName.split("-")[0].split(".")
-
-		version = ".".join(versionParts[:2])
-		release = latestTagName   # ".".join(versionParts[:3])
-except:
-	pass
+project =   githubProject
+author =    "Patrick Lehmann"
+copyright = "2016-2026 Open Source VHDL Group"
+version =   ".".join(githubVersion.split(".")[:2])  # e.g. 2.3    The short X.Y version.
+release =   githubVersion
 
 
 # ==============================================================================
 # Miscellaneous settings
 # ==============================================================================
 # The master toctree document.
-master_doc = 'index'
+master_doc = "index"
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ["_templates"]
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = [
 	"_build",
-	"_themes",
+	"_theme",
 	"Thumbs.db",
 	".DS_Store"
 ]
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'stata-dark'
+pygments_style = "manni"
 
 
 # ==============================================================================
 # Restructured Text settings
 # ==============================================================================
-prologPath = "prolog.inc"
+prologPath = Path("prolog.inc")
 try:
-	with open(prologPath, "r") as prologFile:
-		rst_prolog = prologFile.read()
+	with prologPath.open("r", encoding="utf-8") as fileHandle:
+		rst_prolog = fileHandle.read()
 except Exception as ex:
-	print("[ERROR:] While reading '{0!s}'.".format(prologPath))
+	print(f"[ERROR:] While reading '{prologPath}'.")
 	print(ex)
 	rst_prolog = ""
 
@@ -99,13 +78,26 @@ except Exception as ex:
 # ==============================================================================
 # Options for HTML output
 # ==============================================================================
-# html_theme = 'alabaster'
-html_theme = 'sphinx_rtd_theme'
+html_theme = "sphinx_rtd_theme"
+html_theme_options = {
+	"logo_only": True,
+	"vcs_pageview_mode": 'blob',
+	"navigation_depth": 5,
+}
+html_css_files = [
+	'css/override.css',
+]
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+html_static_path = ["_static"]
+
+html_logo = str(Path(html_static_path[0]) / "logo.png")
+html_favicon = str(Path(html_static_path[0]) / "icon.png")
+
+# Output file base name for HTML help builder.
+htmlhelp_basename = f"{githubProject}Doc"
 
 # If not None, a 'Last updated on:' timestamp is inserted at every page
 # bottom, using the given strftime format.
@@ -116,46 +108,47 @@ html_last_updated_fmt = "%d.%m.%Y"
 # ==============================================================================
 # Options for LaTeX / PDF output
 # ==============================================================================
-from textwrap import dedent
-
+latex_engine = "lualatex"
+latex_use_xindy = False
 latex_elements = {
-	# The paper size ('letterpaper' or 'a4paper').
-	'papersize': 'a4paper',
+	"papersize": "a4paper",      # The paper size ('letterpaper' or 'a4paper').
+	"pointsize": "10pt",         # The font size ('10pt', '11pt' or '12pt').
+	"inputenc":   "",            # Let LuaLaTeX handle input encoding
+	"utf8extra":  "",
+	"fontenc":    r"\usepackage{fontspec}",  # Disable the default T1 font encoding (Essential for LuaLaTeX)
+	"fontpkg":    dedent("""\
+		\\usepackage{unicode-math}
 
-	# The font size ('10pt', '11pt' or '12pt').
-	#'pointsize': '10pt',
+		% Set the Text Fonts (Libertinus)
+		\\setmainfont{Libertinus Serif}
+		\\setsansfont{Libertinus Sans}
+		\\setmonofont{Libertinus Mono}
+		\\setmathfont{Libertinus Math}
 
-	# Additional stuff for the LaTeX preamble.
-	'preamble': dedent(r"""
-		% ================================================================================
-		% User defined additional preamble code
-		% ================================================================================
-		% Add more Unicode characters for pdfLaTeX.
-		% - Alternatively, compile with XeLaTeX or LuaLaTeX.
-		% - https://github.com/sphinx-doc/sphinx/issues/3511
-		%
-		\ifdefined\DeclareUnicodeCharacter
-			\DeclareUnicodeCharacter{2265}{$\geq$}
-			\DeclareUnicodeCharacter{21D2}{$\Rightarrow$}
-		\fi
-
-
-		% ================================================================================
-		"""),
-
-	# Latex figure (float) alignment
-	#'figure_align': 'htbp',
+		% Set Symbol font
+		\\usepackage{newunicodechar}
+		\\newfontfamily{\\emojifont}[Renderer=OpenType]{NotoColorEmoji.ttf}
+		\\usepackage{pytooling}
+	"""),
+	"passoptionstopackages": dedent("""\
+		\\PassOptionsToPackage{verbatimvisiblespace=\\ }{sphinx}
+	"""),
+# "sphinxsetup": "verbatimvisiblespace=\\textvisiblespace"
+# "figure_align": "htbp",     # Latex figure (float) alignment
+	"makeindex":  r"\usepackage[columns=1]{idxlayout}\makeindex",
+	"printindex": r"\def\twocolumn[#1]{#1}\printindex",
 }
+
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
 	( master_doc,
-	  'VHDL-Interfaces.tex',
-	  'VHDL Interfaces',
-		'Open Source VHDL Group',
-		'manual'
+		f"{githubProject}.tex",
+		f"The {githubProject} Documentation",
+		 "Patrick Lehmann",
+		 "manual"
 	),
 ]
 
@@ -164,36 +157,21 @@ latex_documents = [
 # Extensions
 # ==============================================================================
 extensions = [
-# Sphinx theme
-	"sphinx_rtd_theme",
-
 # Standard Sphinx extensions
-	'sphinx.ext.extlinks',
-	'sphinx.ext.intersphinx',
-	'sphinx.ext.todo',
-	'sphinx.ext.graphviz',
-	'sphinx.ext.mathjax',
-	'sphinx.ext.ifconfig',
-	'sphinx.ext.viewcode',
-#	'sphinx.ext.duration',
-
+	"sphinx.ext.extlinks",
+	"sphinx.ext.intersphinx",
+	"sphinx.ext.todo",
+	"sphinx.ext.graphviz",
+	"sphinx.ext.mathjax",
+	"sphinx.ext.ifconfig",
+	"sphinx.ext.viewcode",
 # SphinxContrib extensions
-# 'sphinxcontrib.actdiag',
-# 'sphinxcontrib.seqdiag',
-# 'sphinxcontrib.textstyle',
-# 'sphinxcontrib.spelling',
-# 'changelog',
-
-# BuildTheDocs extensions
-
+	"sphinxcontrib.mermaid",
 # Other extensions
-	'sphinx_fontawesome',
-
-# local extensions (patched)
-#	'autoapi.sphinx',
-
-# local extensions
-#	'DocumentMember'
+	"sphinx_design",
+	"sphinx_copybutton",
+	"sphinx_reports",
+# User defined extensions
 ]
 
 
@@ -201,25 +179,22 @@ extensions = [
 # Sphinx.Ext.InterSphinx
 # ==============================================================================
 intersphinx_mapping = {
-#	'python':   ('https://docs.python.org/3', None),
+	"python": ("https://docs.python.org/3", None),
+	# "ghdl":   ("https://setuptools.pypa.io/en/latest", None),
+	# "nvc":    ("https://setuptools.pypa.io/en/latest", None),
+	"poc":    ("https://vhdl.github.io/PoC", None),
 }
-
-
-# ==============================================================================
-# Sphinx.Ext.AutoDoc
-# ==============================================================================
-# see: https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html#configuration
-autodoc_member_order = "bysource"       # alphabetical, groupwise, bysource
 
 
 # ==============================================================================
 # Sphinx.Ext.ExtLinks
 # ==============================================================================
 extlinks = {
-	'issue': ('https://github.com/VHDL/Interfaces/issues/%s', 'issue #'),
-	'pull':  ('https://github.com/VHDL/Interfaces/pull/%s', 'pull request #'),
-	'src':   ('https://github.com/VHDL/Interfaces/blob/master/%s?ts=2', None),
-#	'test':  ('https://github.com/VHDL/Interfaces/blob/master/tests/%s?ts=2', None)
+	"gh":      (f"https://GitHub.com/%s", "gh:%s"),
+	"ghissue": (f"https://GitHub.com/{githubNamespace}/{githubProject}/issues/%s", "issue #%s"),
+	"ghpull":  (f"https://GitHub.com/{githubNamespace}/{githubProject}/pull/%s", "pull request #%s"),
+	"ghsrc":   (f"https://GitHub.com/{githubNamespace}/{githubProject}/blob/main/%s", None),
+	"wiki":    (f"https://en.wikipedia.org/wiki/%s", None),
 }
 
 
@@ -229,6 +204,16 @@ extlinks = {
 graphviz_output_format = "svg"
 
 
+# ==============================================================================
+# SphinxContrib.Mermaid
+# ==============================================================================
+mermaid_cmd = "mmdc"
+mermaid_cmd_shell = True
+mermaid_params = [
+	'--backgroundColor', 'transparent',
+]
+mermaid_verbose = True
+
 
 # ==============================================================================
 # Sphinx.Ext.ToDo
@@ -236,3 +221,20 @@ graphviz_output_format = "svg"
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
 todo_link_only = True
+
+
+# ==============================================================================
+# sphinx-reports
+# ==============================================================================
+report_unittest_testsuites = {
+	"src": {
+		"name":        f"{githubProject}",
+		"xml_report":  "../report/unit/Unittesting.xml",
+	}
+}
+
+
+# ==============================================================================
+# Sphinx_Design
+# ==============================================================================
+# sd_fontawesome_latex = True

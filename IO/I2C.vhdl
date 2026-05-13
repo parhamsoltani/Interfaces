@@ -17,7 +17,7 @@
 --
 -- License:
 -- =============================================================================
--- Copyright 2016-2025 Open Source VHDL Group
+-- Copyright 2016-2026 Open Source VHDL Group
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -66,5 +66,4 @@ package I2C is
 		SDA : view Tristate_OutView;
 	end view;
 	alias I2C_IOBView is I2C_ControllerView'converse;
-
 end package;

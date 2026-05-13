@@ -10,7 +10,7 @@
 --
 -- License:
 -- =============================================================================
--- Copyright 2025-2025 Open Source VHDL Group
+-- Copyright 2025-2026 Open Source VHDL Group
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -37,18 +37,18 @@ package AvalonST is
 		-- Handshake signals
 		Valid         : std_ulogic;            -- Valid
 		Ready         : std_ulogic;            -- Ready
-		
+
 		-- Payload signals
 		Data          : Data_Type;             -- Data
-		
+
 		-- Packet signals
 		StartOfPacket : std_ulogic;            -- Start of packet
 		EndOfPacket   : std_ulogic;            -- End of packet
 		Empty         : std_ulogic_vector;     -- Empty (number of empty symbols)
-		
+
 		-- Error signal
 		Error         : std_ulogic_vector;     -- Error
-		
+
 		-- Channel signal
 		Channel       : std_ulogic_vector;     -- Channel
 	end record;
@@ -64,10 +64,9 @@ package AvalonST is
 		Empty         : out;
 		Error         : out;
 		Channel       : out;
-		
+
 		-- Source inputs (sink outputs)
 		Ready         : in;
 	end view;
 	alias AvalonST_SinkView is AvalonST_SourceView'converse;
-
 end package;

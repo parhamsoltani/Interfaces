@@ -12,7 +12,7 @@
 --
 -- License:
 -- =============================================================================
--- Copyright 2016-2025 Open Source VHDL Group
+-- Copyright 2016-2026 Open Source VHDL Group
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -80,5 +80,4 @@ package VGA is
 	alias VGA_ReceiverView is VGA_TransmitterView'converse;
 
 	type VGA_Interface_Vector is array(natural range <>) of VGA_Interface;
-
 end package;
