@@ -42,6 +42,11 @@ Avalon/v1/AvalonST_Generic.vhdl
 Avalon/v1/AvalonST_Minimal.vhdl
 Avalon/v1/AvalonST_Minimal_Generic.vhdl
 
+# Wishbone B.3 Interfaces  
+Wishbone/vB3/WishboneCommon.vhdl
+Wishbone/vB3/Wishbone.vhdl
+Wishbone/vB3/Wishbone_Generic.vhdl
+
 # Low-speed interfaces
 #IO/BiSS.vhdl
 IO/I2C.vhdl
@@ -62,5 +67,3 @@ Video/VGA.vhdl
 Video/C-PHY.vhdl
 Video/D-PHY.vhdl
 Video/M-PHY.vhdl
-
-# WishBone

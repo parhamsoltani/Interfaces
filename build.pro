@@ -44,6 +44,11 @@ analyze Avalon/v1/AvalonST_Generic.vhdl
 analyze Avalon/v1/AvalonST_Minimal.vhdl
 analyze Avalon/v1/AvalonST_Minimal_Generic.vhdl
 
+# Wishbone interfaces
+analyze Wishbone/vB3/WishboneCommon.vhdl
+analyze Wishbone/vB3/Wishbone.vhdl
+analyze Wishbone/vB3/Wishbone_Generic.vhdl
+
 # Low-speed interfaces
 #analyze IO/BiSS.vhdl
 analyze IO/I2C.vhdl
@@ -64,5 +69,3 @@ analyze Video/VGA.vhdl
 analyze Video/C-PHY.vhdl
 analyze Video/D-PHY.vhdl
 analyze Video/M-PHY.vhdl
-
-# WishBone
