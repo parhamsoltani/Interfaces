@@ -3,7 +3,7 @@
 --   Patrick Lehmann
 --
 -- Package:
---   VHDL-2019 MIPI C-PHY interface descriptions
+--   VHDL-2019 MIPI M-PHY interface descriptions
 --
 -- Description:
 --   Undocumented
@@ -28,24 +28,18 @@
 library IEEE;
 use     IEEE.std_logic_1164.all;
 
+use     work.Common.all;
 
 
-package CPHY is
-	type CPHYLane_Interface is record
-		Low   : std_logic;
-		Mid   : std_logic;
-		High  : std_logic;
+package MPHY is
+	type MPHY_Interface is record
+		TX : Differatial_Interface_Vector;
+		RX : Differatial_Interface_Vector;
 	end record;
 
-	view CPHYLane_OutView of CPHYLane_Interface is
-		Low   : out;
-		Mid   : out;
-		High  : out;
+	view MPHY_OutView of MPHY_Interface is
+		TX : view ( Differatial_OutView );
+		RX : view ( Differatial_InView  );
 	end view;
-	alias CPHYLane_InView is CPHYLane_OutView'converse;
-
-	type CPHYLane_Interface_Vector is
-		array(natural range <>)
-		of CPHYLane_Interface;
-
+	alias Differatial_InView is Differatial_OutView'converse;
 end package;

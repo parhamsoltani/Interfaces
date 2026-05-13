@@ -10,7 +10,7 @@
 --
 -- License:
 -- =============================================================================
--- Copyright 2025-2025 Open Source VHDL Group
+-- Copyright 2025-2026 Open Source VHDL Group
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -32,9 +32,9 @@ use     IEEE.numeric_std.all;
 package AvalonCommon is
 	-- Common types
 	subtype Data_Type        is std_ulogic_vector;
-	subtype Address_Type     is unsigned;
+	subtype Address_Type     is unresolved_unsigned;
 	subtype ByteEnable_Type  is std_ulogic_vector;
-	subtype BurstCount_Type  is unsigned;
+	subtype BurstCount_Type  is unresolved_unsigned;
 
 	-- Avalon-MM Response
 	subtype Response_Type is std_ulogic_vector(1 downto 0);
@@ -47,5 +47,4 @@ package AvalonCommon is
 		Clock  : std_ulogic;
 		Reset  : std_ulogic;
 	end record;
-
 end package;

@@ -11,7 +11,7 @@
 --
 -- License:
 -- =============================================================================
--- Copyright 2016-2025 Open Source VHDL Group
+-- Copyright 2016-2026 Open Source VHDL Group
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -176,5 +176,4 @@ package Axi4 is
 		ReadData       : view Axi4_ReadData_ManagerView;
 	end view;
 	alias Axi4_SubordinateView is Axi4_ManagerView'converse;
-
 end package;
